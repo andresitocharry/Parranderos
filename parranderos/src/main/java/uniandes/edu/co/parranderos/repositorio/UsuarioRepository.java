@@ -13,6 +13,8 @@ import uniandes.edu.co.parranderos.modelo.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+    
+
     @Query(value = "SELECT * FROM USUARIOS", nativeQuery =  true)
     Collection<Usuario> darUsuarios();
      
@@ -69,6 +71,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Transactional
     @Query(value="DELETE FROM USUARIOS WHERE ID = :id", nativeQuery = true)
     void borrarUsuario(@Param("id") int id);
+    
+
+    @Query(value ="SELECT * FROM USUARIOS WHERE LOGIN = :login AND CLAVE = :clave", nativeQuery = true)
+    Usuario encontrarUsuarioConCredenciales( @Param("login") String login, @Param("clave") String clave);
+    
 
     
 } 
