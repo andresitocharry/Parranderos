@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Inicio - BancAndes</title>
 </head>
 <body>
-    <h1>Bienvenido, ${nombreUsuario}!</h1>
-    <!-- Aquí puedes agregar más contenido HTML si es necesario -->
+    <h1>Bienvenido, <span th:text="${nombreUsuario}"></span>!</h1>
+    <h2>Haz iniciado sesión como <span th:text="${rol}"></span></h2>
+    
+    <!-- Opciones para el administrador -->
+    <div th:if="${rolUsuario == administrador}">
+        <ul>
+            <li><a href="#">Agregar usuario</a></li>
+            <li><a href="#">Crear oficina</a></li>
+        </ul>
+    </div>
+    
+    <!-- Opciones para otros roles -->
+    <div th:unless="${rolUsuario == 'administrador'}">
+        <!-- Opciones para otros roles -->
+    </div>
 </body>
 </html>
